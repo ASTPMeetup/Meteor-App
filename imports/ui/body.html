@@ -1,0 +1,43 @@
+<body>
+  <div class="container">
+    <header>
+      <h1>Todo List ({{incompleteCount}})</h1>
+      {{#if currentUser}}
+        <form class="new-task">
+          <label for="task">Task:</label>
+          <input type="text" name="task" placeholder=" text" pattern=".{5,}" required/>
+          <label for="date">Due Date:</label>
+          <input type="date" name="date" value="mm-dd-yyyy" pattern="[0-9]{2}-[0-9]{2}-[0-9]{4}" required/>
+          <label for="priority">Priority</label> <span>(<output name="status" id="statusOutput">1</output>)</span>
+          <input type="range" name="priority" id="priorityStatus" value="1" min="1" max="5" oninput="statusOutput.value = priorityStatus.value"/>
+          <br>
+          <button type="submit" value="Submit" id="task_submit">Submit</button>
+        </form>
+      {{/if}}
+    </header>
+    <br>
+
+    <label class="hide-completed">
+      <input type="checkbox" />
+        Hide Completed Tasks
+    </label>
+    <br>
+    <br>
+    {{> loginButtons}}
+    <br>
+    <br>
+    <button class="prioritySort">Sort By Priority</button>
+    <br>
+    <br>
+    <button class="dateSort">Sort By Due Date</button>
+    <br>
+    <br>
+    <button class="taskSort">Sort By Create Date</button>
+    <br>
+    <ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
