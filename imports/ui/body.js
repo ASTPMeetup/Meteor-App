@@ -31,7 +31,7 @@ Template.body.events({
     event.preventDefault();
  
     // Get value from form element
-   	const target = event.target;
+    const target = event.target;
     const text = target.task.value;
     var priority = target.priority.value;
     var date = target.date.value;
@@ -44,7 +44,7 @@ Template.body.events({
     if(text.length <= 5) {
 		alert('task names must be at least 5 characters long.');
  	}
- 	else if(date.match(/[0-9]{2}-[0-9]{2}-[0-9]{4}/g)) {
+ 	else if(!date.match(/[0-9]{2}-[0-9]{2}-[0-9]{4}/g)) {
  		alert('invalid date.');
  	}
  	else {
