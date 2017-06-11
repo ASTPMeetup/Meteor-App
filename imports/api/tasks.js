@@ -17,26 +17,26 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'tasks.insert'(text, date, priority, date_interger) {
+  'tasks.insert'(text, date, priority, dueDate) {
     check(text, String);
     check(date, String);
     check(priority, Number);
-    check(date_interger, Number);
+    check(dueDate, Number);
  
     // Make sure the user is logged in before inserting a task
     if (! Meteor.userId()) {
       throw new Meteor.Error('not-authorized');
-   	}
+    }
  
-	Tasks.insert({
-	  text,
-	  date,
-	  priority,
-	  date_interger,
-	  createdAt: new Date(),
-	  owner: Meteor.userId(),
-	  username: Meteor.user().username
-	});
+  Tasks.insert({
+    text,
+    date,
+    priority,
+    dueDate,
+    createdAt: new Date(),
+    owner: Meteor.userId(),
+    username: Meteor.user().username
+  });
   },
   'tasks.remove'(taskId) {
     check(taskId, String);
@@ -73,14 +73,5 @@ Meteor.methods({
     }
  
     Tasks.update(taskId, { $set: { private: setToPrivate } });
-  },
-  'tasks.prioritySort'() {
-  	 Tasks.find().sort({ priority: -1 });
-  },
-  'tasks.dateSort'() {
-  	 Tasks.find().sort({ date_interger : 1 });
-  },
-  'tasks.taskSort'(){
-  	 Tasks.find().sort({ createdAt : -1 });
   }
 });
