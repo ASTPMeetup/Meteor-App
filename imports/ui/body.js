@@ -45,8 +45,8 @@ Template.body.events({
     let priority = target.priority.value;
     let dueDate = date.replace(/-/g, '');
 
-    console.log(date)
-    ;console.log(text.length);
+    console.log(date);
+    console.log(text.length);
 
     priority = Number(priority);
     dueDate = Number(dueDate);
