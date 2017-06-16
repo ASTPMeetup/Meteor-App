@@ -50,19 +50,19 @@ Template.body.events({
  
     // Insert a task into the collection if task is longer than 4 characters.
     if(text.length < 5) {
-    alert('task names must be at least 5 characters long.');
-  }
-  else if(!date.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)) {
-    alert('invalid date.');
-  }
-  else {
-    Meteor.call('tasks.insert', text, date, priority, dueDate);
-    // Clear form
-    target.task.value = '';
-    target.date.value = '';
-    target.priority.value = '1';
-    target.status.value = '1';
-  }
+      alert('task names must be at least 5 characters long.');
+    }
+    else if(!date.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/g)) {
+      alert('invalid date.');
+    }
+    else {
+      Meteor.call('tasks.insert', text, date, priority, dueDate);
+      // Clear form
+      target.task.value = '';
+      target.date.value = '';
+      target.priority.value = '1';
+      target.status.value = '1';
+    }
   },
   'change .hide-completed input'(event, instance) {
       instance.state.set('hideCompleted', event.target.checked);
