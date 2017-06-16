@@ -28,6 +28,7 @@ Meteor.methods({
       throw new Meteor.Error('not-authorized');
     }
  
+<<<<<<< HEAD
   Tasks.insert({
     text,
     date,
@@ -37,6 +38,17 @@ Meteor.methods({
     owner: Meteor.userId(),
     username: Meteor.user().username
   });
+=======
+	Tasks.insert({
+	  text,
+	  date,
+	  priority,
+	  dueDate,
+	  createdAt: new Date(),
+	  owner: Meteor.userId(),
+	  username: Meteor.user().username
+	});
+>>>>>>> 4a876943e65629079312ff432672c900d18db00a
   },
   'tasks.remove'(taskId) {
     check(taskId, String);
