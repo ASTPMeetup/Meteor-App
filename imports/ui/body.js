@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
 import { Tasks } from '../api/tasks.js';
+import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
  
 import './task.js';
@@ -15,14 +16,17 @@ Template.body.helpers({
   tasks() {
     let instance = Template.instance();
 
-    if (instance.state.get('hideCompleted') || instance.state.get('sortByCreatedAt')) {
+    if (instance.state.get('hideCompleted')) {
         // If hide completed is checked, filter tasks
         return Tasks.find({checked: {$ne: true}}, {sort: {createdAt: -1}});
     }
-    if (instance.state.get('sortByPriority')) {
+    if (Session.equals('sortMethod', 'sortByCreatedAt')) {
+        return Tasks.find({}, {sort: {createdAt: -1}});
+    }
+    if (Session.equals('sortMethod','sortByPriority')) {
         return Tasks.find({}, { sort: { priority: -1 }});
     }
-    if (instance.state.get('sortByDate')) {
+    if (Session.equals('sortMethod','sortByDate')) {
         return Tasks.find({}, { sort: { dueDate: 1 }});
     }
     // Otherwise, return all of the tasks
@@ -67,19 +71,13 @@ Template.body.events({
   'change .hide-completed input'(event, instance) {
       instance.state.set('hideCompleted', event.target.checked);
   },
-  'click .prioritySort'(event, instance) {
-      instance.state.set('sortByDate', false);
-      instance.state.set('sortByCreatedAt', false);
-      instance.state.set('sortByPriority', true);
+  'click .prioritySort'() {
+      Session.set('sortMethod', 'sortByPriority');
   },
-  'click .dateSort'(event, instance) {
-      instance.state.set('sortByPriority', false);
-      instance.state.set('sortByCreatedAt', false);
-      instance.state.set('sortByDate', true);
+  'click .dateSort'() {
+      Session.set('sortMethod', 'sortByDate');
   },
-   'click .taskSort'(event, instance) {
-       instance.state.set('sortByPriority', false);
-       instance.state.set('sortByDate', false);
-       instance.state.set('sortByCreatedAt', true);
+   'click .taskSort'() {
+      Session.set('sortMethod', 'sortByCreatedAt');
   }
 });
