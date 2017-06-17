@@ -21,3 +21,8 @@ Template.task.events({
     Meteor.call('tasks.setPrivate', this._id, !this.private);
   }
 });
+
+Template.registerHelper('debug', function(){
+    console.log(this);
+    console.log(this.priority);
+});

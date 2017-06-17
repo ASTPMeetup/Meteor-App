@@ -68,10 +68,11 @@ Template.body.events({
       target.status.value = '1';
     }
   },
-  'change .hide-completed input'(event, instance) {
+  'change .hide-completed input'(event, instance) {;
       instance.state.set('hideCompleted', event.target.checked);
   },
   'click .prioritySort'() {
+      console.log($(this.lastNode.innerHTML));
       Session.set('sortMethod', 'sortByPriority');
   },
   'click .dateSort'() {
