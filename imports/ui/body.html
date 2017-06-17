@@ -12,7 +12,7 @@
           <label for="priority">Priority</label> <span>(<output name="status" id="statusOutput">1</output>)</span>
           <input type="range" name="priority" id="priorityStatus" value="1" min="1" max="5" oninput="statusOutput.value = priorityStatus.value"/>
           <br>
-          <button type="submit" value="Submit" id="task_submit">Submit</button>
+          <button type="submit" class="btn btn-primary" value="Submit" id="task_submit">Submit</button>
         </form>
       {{/if}}
     </header>
@@ -27,13 +27,10 @@
     {{> loginButtons}}
     <br>
     <br>
-    <button class="prioritySort">Sort By Priority</button>
+    <button class="prioritySort btn btn-danger">Sort By Priority</button>
+    <button class="dateSort btn btn-primary">Sort By Due Date</button>
+    <button class="taskSort btn btn-info">Sort By Create Date</button>
     <br>
-    <br>
-    <button class="dateSort">Sort By Due Date</button>
-    <br>
-    <br>
-    <button class="taskSort">Sort By Create Date</button>
     <br>
     <ul>
       {{#each tasks}}
