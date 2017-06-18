@@ -24,5 +24,4 @@ Template.task.events({
 
 Template.registerHelper('debug', function(){
     console.log(this);
-    console.log(this.priority);
 });

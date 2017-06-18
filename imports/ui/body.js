@@ -72,7 +72,6 @@ Template.body.events({
       instance.state.set('hideCompleted', event.target.checked);
   },
   'click .prioritySort'() {
-      console.log($(this.lastNode.innerHTML));
       Session.set('sortMethod', 'sortByPriority');
   },
   'click .dateSort'() {
