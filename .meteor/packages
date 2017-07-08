@@ -22,3 +22,8 @@ accounts-password
 session
 twbs:bootstrap
 ian:accounts-ui-bootstrap-3
+practicalmeteor:mocha@=2.4.5-rc5.5
+xolvio:cleaner
+dburles:factory
+practicalmeteor:sinon
+practicalmeteor:faker
